@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux内核研究项目展示 - Linux Kernel Research Portfolio</title>
+    <meta name="description" content="Linux内核深度研究项目 - 涵盖内存管理、进程调度、网络子系统、文件系统、设备驱动等核心技术">
+    <meta name="keywords" content="Linux内核,内核研究,内存管理,进程调度,网络子系统,文件系统,设备驱动,内核开发">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Linux内核研究</h1>
+                </div>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="#home" class="nav-link">首页</a>
+                    <a href="#projects" class="nav-link">项目</a>
+                    <a href="#about" class="nav-link">关于</a>
+                </div>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Linux内核研究项目</h1>
+                <p class="hero-subtitle">深入探索Linux内核核心技术与实现机制</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="project-count">0</span>
+                        <span class="stat-label">内核模块</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="category-count">0</span>
+                        <span class="stat-label">研究领域</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="year-count">0</span>
+                        <span class="stat-label">研究年限</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>内核研究模块</h2>
+                <p>深入探索Linux内核各个子系统的核心技术和实现机制</p>
+            </div>
+            <div class="projects-grid" id="projects-grid">
+                <!-- 项目将在这里动态加载 -->
+            </div>
+            <div class="no-results" id="no-results" style="display: none;">
+                <p>没有找到匹配的项目</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Areas Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>研究领域</h2>
+                <p>专注于Linux内核核心子系统的深度研究与技术创新</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>我专注于Linux内核技术的深度研究，致力于探索内核各个子系统的核心机制和实现原理。通过深入理解内核源码、系统调用和硬件抽象层，我致力于解决内核性能优化、安全机制和驱动开发的技术挑战。</p>
+                    <p>我的核心研究领域包括：</p>
+                    <ul class="research-areas">
+                        <li><i class="fas fa-memory"></i> 内核内存管理：buddy分配器、slab分配器、虚拟内存</li>
+                        <li><i class="fas fa-cogs"></i> 进程调度：CFS调度器、实时调度、同步机制、RCU</li>
+                        <li><i class="fas fa-network-wired"></i> 网络子系统：协议栈实现、套接字层、网络设备驱动</li>
+                        <li><i class="fas fa-hdd"></i> 文件系统：VFS层、ext4/btrfs、块设备、I/O调度</li>
+                        <li><i class="fas fa-microchip"></i> 设备驱动：字符设备、块设备、平台驱动、中断处理</li>
+                        <li><i class="fas fa-tachometer-alt"></i> 内核性能：性能分析工具、基准测试、瓶颈优化</li>
+                        <li><i class="fas fa-shield-alt"></i> 内核安全：权限控制、内存保护、安全模块</li>
+                        <li><i class="fas fa-tools"></i> 内核工具链：调试技术、静态分析、开发环境</li>
+                    </ul>
+                    <p>通过理论与实践相结合的研究方法，我致力于为Linux内核技术领域贡献创新解决方案，推动内核技术的深度理解和最佳实践的普及。</p>
+                    <div class="warning-notice">
+                        <p><strong>⚠️ 重要提醒：</strong>本项目包含内核级代码，仅用于学习和研究目的。请在虚拟机或测试环境中运行，不要在生产环境中使用。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Linux Kernel Research Portfolio. All rights reserved.</p>
+                <p>Built with 🐧 for kernel knowledge sharing</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <script>
+        // Linux内核研究项目展示系统
+        class LinuxKernelResearchPortfolio {
+            constructor() {
+                this.projects = [];
+                this.init();
+            }
+            
+            async init() {
+                console.log('初始化Linux内核研究项目展示系统...');
+                await this.loadProjects();
+                this.setupEventListeners();
+                this.renderProjects();
+                this.updateStats();
+                console.log('系统初始化完成');
+            }
+            
+            async loadProjects() {
+                try {
+                    const response = await fetch('projects/projects.json');
+                    this.projects = await response.json();
+                    console.log(`成功加载 ${this.projects.length} 个项目`);
+                } catch (error) {
+                    console.error('加载项目失败:', error);
+                    // 使用备用数据
+                    this.projects = this.getFallbackProjects();
+                }
+            }
+            
+            getFallbackProjects() {
+                return [
+                    {
+                        id: 1,
+                        title: "Linux内核内存管理子系统研究",
+                        description: "深入研究Linux内核内存管理机制，包括页面分配器、slab分配器、虚拟内存管理、内存回收等核心技术。",
+                        category: "内核内存管理",
+                        year: 2024,
+                        tags: ["Linux内核", "内存管理", "页面分配", "虚拟内存"],
+                        image: "🧠",
+                        details: "Linux内核内存管理研究项目专注于内核级内存管理的核心技术。我们深入研究了Linux内核的内存子系统，分析了buddy算法和页面分配器的实现机制。",
+                        folder: "内核内存管理"
+                    },
+                    {
+                        id: 2,
+                        title: "Linux内核进程调度与同步机制研究",
+                        description: "探索Linux内核进程调度算法、同步原语、锁机制等核心技术，深入理解CFS调度器、RCU、自旋锁等关键实现。",
+                        category: "进程调度",
+                        year: 2024,
+                        tags: ["Linux内核", "进程调度", "CFS", "同步机制"],
+                        image: "⚙️",
+                        details: "Linux内核进程调度研究项目深入探索了内核的调度和同步机制。我们基于最新的内核版本，分析了多种调度算法。",
+                        folder: "进程调度"
+                    }
+                ];
+            }
+            
+            setupEventListeners() {
+                // 模态框关闭
+                const modal = document.getElementById('project-modal');
+                if (modal) {
+                    const closeBtn = modal.querySelector('.close');
+                    if (closeBtn) {
+                        closeBtn.addEventListener('click', () => {
+                            this.closeModal();
+                        });
+                    }
+
+                    // 点击模态框外部关闭
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            this.closeModal();
+                        }
+                    });
+                }
+            }
+
+            
+            renderProjects() {
+                const projectsGrid = document.getElementById('projects-grid');
+                const noResults = document.getElementById('no-results');
+
+                if (!projectsGrid) return;
+
+                if (this.projects.length === 0) {
+                    projectsGrid.innerHTML = '<p class="no-projects">没有找到项目</p>';
+                    if (noResults) noResults.style.display = 'block';
+                    return;
+                }
+
+                if (noResults) noResults.style.display = 'none';
+
+                projectsGrid.innerHTML = this.projects.map(project => `
+                    <div class="project-card">
+                        <div class="project-image">
+                            ${project.image}
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">${project.title}</h3>
+                            <p class="project-description">${project.description}</p>
+                            <div class="project-meta">
+                                <span class="project-category">${project.category}</span>
+                                <span class="project-year">${project.year}</span>
+                            </div>
+                            <div class="project-tags">
+                                ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn btn-primary" onclick="portfolio.showProjectDetails(${project.id})">
+                                    <span class="btn-icon">📋</span>
+                                    查看详情
+                                </button>
+                                <button class="btn btn-secondary" onclick="portfolio.viewProjectContent('${project.folder}')">
+                                    <span class="btn-icon">📖</span>
+                                    查看内容
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                console.log(`渲染了 ${this.projects.length} 个项目卡片`);
+            }
+            
+            updateStats() {
+                // 更新hero section中的统计数据
+                const projectCount = document.getElementById('project-count');
+                const categoryCountHero = document.getElementById('category-count');
+                const yearCountHero = document.getElementById('year-count');
+
+                // 更新原有的统计数据（如果存在）
+                const totalProjects = document.getElementById('total-projects');
+
+                const projectsLength = this.projects.length;
+                const categoriesLength = [...new Set(this.projects.map(p => p.category))].length;
+                const yearsLength = [...new Set(this.projects.map(p => p.year))].length;
+
+                if (projectCount) projectCount.textContent = projectsLength;
+                if (categoryCountHero) categoryCountHero.textContent = categoriesLength;
+                if (yearCountHero) yearCountHero.textContent = yearsLength;
+                if (totalProjects) totalProjects.textContent = projectsLength;
+            }
+            
+            showProjectDetails(projectId) {
+                const project = this.projects.find(p => p.id === projectId);
+                if (!project) return;
+                
+                const modal = document.getElementById('project-modal');
+                const modalContent = document.getElementById('modal-content');
+                
+                if (modal && modalContent) {
+                    modalContent.innerHTML = `
+                        <div class="project-details">
+                            <h2>${project.title}</h2>
+                            <div class="project-meta-details">
+                                <span class="project-category">${project.category}</span>
+                                <span class="project-year">${project.year}</span>
+                            </div>
+                            <p class="project-description-full">${project.details}</p>
+                            <div class="project-tags-full">
+                                <strong>技术标签：</strong>
+                                ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                            </div>
+                            <div class="project-actions-modal">
+                                <button class="btn btn-primary" onclick="portfolio.viewProjectContent('${project.folder}')">
+                                    <span class="btn-icon">📖</span>
+                                    查看项目内容
+                                </button>
+                                <button class="btn btn-secondary" onclick="portfolio.closeModal()">
+                                    <span class="btn-icon">✕</span>
+                                    关闭
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    modal.style.display = 'block';
+                }
+            }
+            
+            viewProjectContent(folderName) {
+                // 构建文件夹路径
+                const folderPath = `projects/${folderName}`;
+                
+                // 检查文件夹是否存在并显示内容
+                fetch(folderPath + '/README.md')
+                    .then(response => {
+                        if (response.ok) {
+                            // 如果文件夹存在，显示项目内容
+                            this.showProjectContent(folderPath, folderName);
+                        } else {
+                            // 如果文件夹不存在，显示提示
+                            this.showFolderNotFoundMessage(folderName);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error checking folder:', error);
+                        this.showFolderNotFoundMessage(folderName);
+                    });
+            }
+            
+            showProjectContent(folderPath, folderName) {
+                // 显示项目内容模态框
+                const modal = document.getElementById('project-modal');
+                const modalContent = document.getElementById('modal-content');
+                
+                // 先显示加载状态
+                modalContent.innerHTML = `
+                    <div class="project-content-loading">
+                        <h3>📖 正在加载项目内容...</h3>
+                        <div class="loading-spinner"></div>
+                    </div>
+                `;
+                modal.style.display = 'block';
+                
+                // 读取README.md内容
+                fetch(folderPath + '/README.md')
+                    .then(response => response.text())
+                    .then(content => {
+                        // 将Markdown内容转换为HTML（简单处理）
+                        const htmlContent = this.convertMarkdownToHtml(content);
+                        
+                        modalContent.innerHTML = `
+                            <div class="project-content-view">
+                                <div class="content-header">
+                                    <h2>📖 ${folderName}</h2>
+                                    <button class="btn btn-secondary" onclick="portfolio.closeModal()">
+                                        <span class="btn-icon">✕</span>
+                                        关闭
+                                    </button>
+                                </div>
+                                <div class="content-body">
+                                    <div class="readme-content">
+                                        ${htmlContent}
+                                    </div>
+                                </div>
+                                <div class="content-footer">
+                                    <button class="btn btn-primary" onclick="portfolio.showFolderStructure('${folderPath}')">
+                                        <span class="btn-icon">📁</span>
+                                        查看文件结构
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="portfolio.closeModal()">
+                                        <span class="btn-icon">←</span>
+                                        返回项目详情
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                    })
+                    .catch(error => {
+                        console.error('Error loading project content:', error);
+                        modalContent.innerHTML = `
+                            <div class="project-content-error">
+                                <h3>❌ 加载失败</h3>
+                                <p>无法加载项目内容：${error.message}</p>
+                                <button class="btn btn-secondary" onclick="portfolio.closeModal()">
+                                    <span class="btn-icon">✕</span>
+                                    关闭
+                                </button>
+                            </div>
+                        `;
+                    });
+            }
+            
+            convertMarkdownToHtml(markdown) {
+                // 简单的Markdown转HTML转换
+                return markdown
+                    // 标题
+                    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+                    // 粗体和斜体
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    // 代码块
+                    .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+                    .replace(/`([^`]+)`/g, '<code>$1</code>')
+                    // 链接
+                    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+                    // 列表
+                    .replace(/^\* (.*$)/gim, '<li>$1</li>')
+                    .replace(/^- (.*$)/gim, '<li>$1</li>')
+                    // 段落
+                    .replace(/\n\n/g, '</p><p>')
+                    .replace(/^(?!<[h|li|pre|ul|ol]).*$/gm, '<p>$&</p>')
+                    // 清理多余的标签
+                    .replace(/<p><\/p>/g, '')
+                    .replace(/<p>(<[h|li|pre|ul|ol])/g, '$1')
+                    .replace(/(<\/[h|li|pre|ul|ol]>)<\/p>/g, '$1');
+            }
+            
+            showFolderStructure(folderPath) {
+                // 显示文件夹结构
+                const modal = document.getElementById('project-modal');
+                const modalContent = document.getElementById('modal-content');
+                
+                modalContent.innerHTML = `
+                    <div class="folder-structure-view">
+                        <div class="content-header">
+                            <h2>📁 文件结构</h2>
+                            <button class="btn btn-secondary" onclick="portfolio.closeModal()">
+                                <span class="btn-icon">✕</span>
+                                关闭
+                            </button>
+                        </div>
+                        <div class="content-body">
+                            <div class="folder-tree">
+                                <div class="folder-item">
+                                    <span class="folder-icon">📁</span>
+                                    <span class="folder-name">${folderPath.split('/').pop()}</span>
+                                </div>
+                                <div class="file-item">
+                                    <span class="file-icon">📄</span>
+                                    <span class="file-name">README.md</span>
+                                </div>
+                                <div class="file-item">
+                                    <span class="file-icon">📄</span>
+                                    <span class="file-name">项目文档</span>
+                                </div>
+                                <div class="file-item">
+                                    <span class="file-icon">📄</span>
+                                    <span class="file-name">技术方案</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-footer">
+                            <button class="btn btn-primary" onclick="portfolio.viewProjectContent('${folderPath.split('/').pop()}')">
+                                <span class="btn-icon">📖</span>
+                                返回项目内容
+                            </button>
+                            <button class="btn btn-secondary" onclick="portfolio.closeModal()">
+                                <span class="btn-icon">✕</span>
+                                关闭
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            showFolderNotFoundMessage(folderName) {
+                alert(`文件夹 "${folderName}" 不存在或无法访问`);
+            }
+            
+            closeModal() {
+                const modal = document.getElementById('project-modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+        
+        // 全局变量
+        let portfolio;
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM加载完成，开始初始化...');
+            portfolio = new LinuxKernelResearchPortfolio();
+            window.portfolio = portfolio;
+        });
+
+        // 导航栏交互
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+
+                // 点击导航链接时关闭移动端菜单
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                    });
+                });
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // 页面加载动画
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+        
+        // 头部滚动效果
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
