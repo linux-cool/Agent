@@ -1,0 +1,411 @@
+# security_config.yaml
+# 第7章 安全隐私防护体系 - 配置文件
+
+# 威胁分析配置
+threat_analysis:
+  # 威胁数据库配置
+  threat_database:
+    enabled: true
+    auto_update: true
+    update_interval: "24h"
+  
+  # 风险评估配置
+  risk_assessment:
+    default_epsilon: 1.0
+    default_delta: 1e-5
+    sensitivity_threshold: 0.8
+  
+  # 威胁检测规则
+  detection_rules:
+    - name: "Prompt Injection Detection"
+      pattern: "ignore|forget|system|assistant"
+      severity: "HIGH"
+      action: "block"
+    
+    - name: "Data Poisoning Detection"
+      pattern: "malicious|poison|inject"
+      severity: "CRITICAL"
+      action: "quarantine"
+
+# 输入验证配置
+input_validation:
+  # 验证规则配置
+  validation_rules:
+    user_query:
+      max_length: 500
+      min_length: 1
+      required: true
+      patterns:
+        - type: "NO_SQL_INJECTION"
+        - type: "NO_XSS"
+        - type: "NO_PATH_TRAVERSAL"
+    
+    user_id:
+      max_length: 50
+      min_length: 3
+      required: true
+      patterns:
+        - type: "IS_ALPHANUMERIC"
+    
+    email:
+      max_length: 100
+      required: true
+      patterns:
+        - type: "REGEX_MATCH"
+          value: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+  
+  # 净化规则配置
+  sanitization_rules:
+    user_query:
+      - type: "REMOVE"
+        pattern: "<script.*?>.*?</script>"
+      - type: "REPLACE"
+        pattern: "(--|#|/\\*|\\*/)"
+        replacement: " "
+      - type: "TRUNCATE"
+        value: 500
+  
+  # 敏感数据检测
+  sensitive_data:
+    patterns:
+      email: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"
+      phone: "\\b(?:\+?(\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\b"
+      credit_card: "\\b(?:\\d{4}[ -]?){3}\\d{4}\\b"
+      id_card: "\\b[1-9]\\d{5}(18|19|20)\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]\\b"
+      ip_address: "\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b"
+
+# 权限控制配置
+access_control:
+  # RBAC配置
+  rbac:
+    enabled: true
+    default_role: "user"
+    admin_role: "admin"
+    
+    # 默认角色定义
+    default_roles:
+      - name: "admin"
+        description: "系统管理员"
+        permissions:
+          - resource_type: "OTHER"
+            resource_id: null
+            action: "MANAGE"
+      
+      - name: "user"
+        description: "普通用户"
+        permissions:
+          - resource_type: "LLM_MODEL"
+            resource_id: null
+            action: "READ"
+      
+      - name: "agent_executor"
+        description: "智能体执行者"
+        permissions:
+          - resource_type: "AGENT"
+            resource_id: null
+            action: "EXECUTE"
+          - resource_type: "TOOL"
+            resource_id: "search_web"
+            action: "INVOKE"
+  
+  # ABAC配置
+  abac:
+    enabled: true
+    
+    # 属性策略
+    policies:
+      - name: "Customer Service Access"
+        condition: "department == 'CustomerService' AND level == 'L1'"
+        permissions:
+          - resource_type: "DATA_SOURCE"
+            resource_id: "customer_db"
+            action: "READ"
+      
+      - name: "Working Hours Access"
+        condition: "current_hour >= 9 AND current_hour <= 17"
+        permissions:
+          - resource_type: "TOOL"
+            resource_id: "sensitive_tool"
+            action: "INVOKE"
+  
+  # 权限缓存配置
+  cache:
+    enabled: true
+    ttl: 300  # 5分钟
+    max_size: 1000
+
+# 隐私保护配置
+privacy_protection:
+  # 加密配置
+  encryption:
+    algorithm: "FERNET"
+    key_rotation: true
+    rotation_interval: "30d"
+    
+    # 密钥管理
+    key_management:
+      provider: "local"  # local, aws_kms, azure_keyvault
+      backup_enabled: true
+      backup_location: "/secure/backup"
+  
+  # 匿名化配置
+  anonymization:
+    enabled: true
+    
+    # 字段匿名化规则
+    field_rules:
+      email:
+        method: "PSEUDONYMIZATION"
+        params:
+          salt: "email_salt_123"
+      
+      name:
+        method: "GENERALIZATION"
+        params:
+          level: "first_char"
+      
+      age:
+        method: "GENERALIZATION"
+        params:
+          bin_size: 10
+      
+      phone:
+        method: "MASKING"
+        params:
+          mask_char: "*"
+          keep_digits: 4
+  
+  # 差分隐私配置
+  differential_privacy:
+    enabled: true
+    epsilon: 1.0
+    delta: 1e-5
+    
+    # 噪声类型
+    noise_type: "LAPLACE"
+    
+    # 敏感度计算
+    sensitivity:
+      auto_calculate: true
+      default_sensitivity: 1.0
+  
+  # 数据脱敏配置
+  data_masking:
+    enabled: true
+    
+    # 脱敏规则
+    masking_rules:
+      email: "([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})"
+      phone: "(\\d{3})\\d{4}(\\d{4})"
+      id_card: "(\\d{6})\\d{8}(\\d{4})"
+      credit_card: "(\\d{4})\\d{8}(\\d{4})"
+      ip: "(\\d{1,3}\\.\\d{1,3})\\.\\d{1,3}\\.\\d{1,3}"
+  
+  # 数据保留策略
+  retention:
+    default_days: 365
+    policies:
+      - data_type: "EMAIL"
+        retention_days: 365
+      - data_type: "PHONE"
+        retention_days: 180
+      - data_type: "LOG"
+        retention_days: 90
+
+# 安全监控配置
+security_monitoring:
+  # 监控配置
+  monitoring:
+    enabled: true
+    check_interval: 5  # 秒
+    max_events: 10000
+    max_alerts: 1000
+  
+  # 异常检测配置
+  anomaly_detection:
+    enabled: true
+    
+    # 检测阈值
+    thresholds:
+      login_failure: 2.0
+      data_access: 3.0
+      permission_denied: 2.5
+    
+    # 时间窗口
+    window_size: 100
+    time_window: "1h"
+  
+  # 安全规则配置
+  security_rules:
+    enabled: true
+    
+    # 规则定义
+    rules:
+      - name: "多次登录失败"
+        condition: "login_failures > 3"
+        severity: "HIGH"
+        action: "block_ip"
+        cooldown: "1h"
+      
+      - name: "非工作时间访问"
+        condition: "hour < 6 OR hour > 22"
+        severity: "MEDIUM"
+        action: "alert_admin"
+      
+      - name: "权限提升尝试"
+        condition: "permission_denied > 5"
+        severity: "HIGH"
+        action: "suspend_user"
+      
+      - name: "大量数据访问"
+        condition: "data_access > 20"
+        severity: "MEDIUM"
+        action: "rate_limit"
+  
+  # 告警配置
+  alerting:
+    enabled: true
+    
+    # 告警渠道
+    channels:
+      - type: "email"
+        enabled: true
+        recipients: ["admin@example.com"]
+        template: "security_alert"
+      
+      - type: "webhook"
+        enabled: true
+        url: "https://alerts.example.com/webhook"
+        timeout: 30
+      
+      - type: "slack"
+        enabled: false
+        webhook_url: ""
+        channel: "#security"
+    
+    # 告警级别配置
+    severity_levels:
+      LOW:
+        enabled: true
+        channels: ["email"]
+        delay: "5m"
+      
+      MEDIUM:
+        enabled: true
+        channels: ["email", "webhook"]
+        delay: "2m"
+      
+      HIGH:
+        enabled: true
+        channels: ["email", "webhook"]
+        delay: "1m"
+      
+      CRITICAL:
+        enabled: true
+        channels: ["email", "webhook"]
+        delay: "0m"
+  
+  # 审计日志配置
+  audit_logging:
+    enabled: true
+    
+    # 日志级别
+    log_level: "INFO"
+    
+    # 日志格式
+    log_format: "json"
+    
+    # 日志输出
+    outputs:
+      - type: "file"
+        path: "/var/log/security/audit.log"
+        max_size: "100MB"
+        max_files: 10
+      
+      - type: "syslog"
+        facility: "local0"
+        priority: "info"
+    
+    # 敏感字段过滤
+    sensitive_fields:
+      - "password"
+      - "token"
+      - "secret"
+      - "key"
+  
+  # 数据存储配置
+  storage:
+    # 事件存储
+    events:
+      provider: "memory"  # memory, redis, elasticsearch
+      ttl: "7d"
+      max_size: 10000
+    
+    # 告警存储
+    alerts:
+      provider: "memory"
+      ttl: "30d"
+      max_size: 1000
+    
+    # 审计日志存储
+    audit_logs:
+      provider: "file"
+      ttl: "90d"
+      max_size: 100000
+
+# 系统配置
+system:
+  # 日志配置
+  logging:
+    level: "INFO"
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    handlers:
+      - type: "console"
+        enabled: true
+      - type: "file"
+        enabled: true
+        path: "/var/log/security/system.log"
+        max_size: "50MB"
+        max_files: 5
+  
+  # 性能配置
+  performance:
+    # 异步处理
+    async_enabled: true
+    max_workers: 10
+    
+    # 缓存配置
+    cache:
+      enabled: true
+      provider: "memory"  # memory, redis
+      ttl: 300
+      max_size: 1000
+    
+    # 限流配置
+    rate_limiting:
+      enabled: true
+      requests_per_minute: 100
+      burst_size: 20
+  
+  # 安全配置
+  security:
+    # HTTPS配置
+    https:
+      enabled: true
+      cert_file: "/etc/ssl/certs/security.crt"
+      key_file: "/etc/ssl/private/security.key"
+    
+    # CORS配置
+    cors:
+      enabled: true
+      allowed_origins: ["https://example.com"]
+      allowed_methods: ["GET", "POST", "PUT", "DELETE"]
+      allowed_headers: ["Content-Type", "Authorization"]
+    
+    # 会话配置
+    session:
+      enabled: true
+      secret_key: "your-secret-key-here"
+      ttl: 3600  # 1小时
+      secure: true
+      http_only: true

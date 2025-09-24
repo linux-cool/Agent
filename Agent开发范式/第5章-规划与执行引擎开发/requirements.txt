@@ -1,0 +1,34 @@
+# 第5章 规划与执行引擎开发 - 依赖包
+# 基础依赖
+asyncio
+pytest
+pyyaml
+numpy
+pandas
+scikit-learn
+
+# 系统监控
+psutil
+
+# 数据库
+sqlite3
+
+# 网络和HTTP
+requests
+
+# 数据处理
+heapq
+collections
+dataclasses
+enum
+uuid
+threading
+time
+datetime
+json
+logging
+typing
+os
+sys
+tempfile
+csv

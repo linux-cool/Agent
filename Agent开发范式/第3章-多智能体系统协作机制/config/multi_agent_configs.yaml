@@ -1,0 +1,360 @@
+# multi_agent_configs.yaml
+# 第3章 多智能体系统协作机制配置文件
+
+# 多智能体系统配置
+multi_agent_system:
+  # 系统基本信息
+  system_name: "MultiAgentCollaborationSystem"
+  version: "1.0.0"
+  description: "多智能体协作系统配置"
+  
+  # 协调类型配置
+  coordination:
+    type: "centralized"  # centralized, distributed, hybrid
+    heartbeat_interval: 5  # 心跳间隔（秒）
+    timeout_threshold: 30  # 超时阈值（秒）
+    max_agents: 50  # 最大智能体数量
+    
+  # 系统监控配置
+  monitoring:
+    enabled: true
+    metrics_interval: 10  # 指标收集间隔（秒）
+    log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+    performance_tracking: true
+    
+  # 资源管理配置
+  resource_management:
+    cpu_limit: 8.0  # CPU限制
+    memory_limit: 16.0  # 内存限制（GB）
+    disk_limit: 100.0  # 磁盘限制（GB）
+    network_bandwidth: 1000  # 网络带宽（Mbps）
+
+# 通信协议配置
+communication_protocols:
+  # HTTP协议配置
+  http:
+    enabled: true
+    host: "localhost"
+    port: 8080
+    timeout: 30
+    max_retries: 3
+    encryption:
+      enabled: true
+      algorithm: "AES-256-GCM"
+      key: "your_encryption_key_here"
+    
+  # WebSocket协议配置
+  websocket:
+    enabled: true
+    host: "localhost"
+    port: 8081
+    ping_interval: 30
+    max_connections: 100
+    compression: true
+    
+  # gRPC协议配置
+  grpc:
+    enabled: false
+    host: "localhost"
+    port: 50051
+    max_message_length: 4194304  # 4MB
+    keepalive_time: 30
+    keepalive_timeout: 5
+    
+  # 消息队列配置
+  message_queue:
+    enabled: true
+    type: "redis"  # redis, rabbitmq, kafka
+    host: "localhost"
+    port: 6379
+    database: 0
+    password: ""
+    max_connections: 10
+    
+  # 协议选择策略
+  protocol_selection:
+    strategy: "adaptive"  # adaptive, round_robin, priority_based
+    fallback_enabled: true
+    health_check_interval: 10
+
+# 任务分配配置
+task_allocation:
+  # 分配策略配置
+  strategies:
+    capability_based:
+      enabled: true
+      weight: 0.4
+      min_capability_match: 0.8
+      
+    load_balanced:
+      enabled: true
+      weight: 0.3
+      algorithm: "weighted_round_robin"  # round_robin, weighted_round_robin, least_connections
+      
+    cost_optimized:
+      enabled: true
+      weight: 0.2
+      max_cost_threshold: 100.0
+      
+    performance_based:
+      enabled: true
+      weight: 0.1
+      min_performance_score: 0.7
+  
+  # 负载均衡配置
+  load_balancing:
+    algorithm: "weighted_round_robin"
+    health_check_interval: 5
+    failure_threshold: 3
+    recovery_threshold: 2
+    
+  # 任务优先级配置
+  priority_config:
+    high_priority_weight: 3.0
+    medium_priority_weight: 2.0
+    low_priority_weight: 1.0
+    default_priority: "medium"
+    
+  # 资源分配配置
+  resource_allocation:
+    cpu_allocation_strategy: "proportional"  # proportional, equal, custom
+    memory_allocation_strategy: "proportional"
+    disk_allocation_strategy: "proportional"
+    network_allocation_strategy: "proportional"
+
+# 协作策略配置
+collaboration_strategies:
+  # 共识机制配置
+  consensus:
+    algorithm: "weighted_voting"  # simple_majority, weighted_voting, quorum
+    timeout: 30  # 共识超时时间（秒）
+    retry_attempts: 3
+    quorum_threshold: 0.6  # 法定人数阈值
+    
+  # 协商机制配置
+  negotiation:
+    max_rounds: 10
+    timeout_per_round: 5
+    concession_rate: 0.1
+    utility_threshold: 0.7
+    
+  # 联盟管理配置
+  coalition:
+    max_coalition_size: 10
+    min_coalition_size: 2
+    stability_threshold: 0.8
+    formation_timeout: 60
+    
+  # 协作策略选择
+  strategy_selection:
+    default_strategy: "consensus"
+    adaptive_selection: true
+    performance_threshold: 0.8
+
+# 容错机制配置
+fault_tolerance:
+  # 健康检查配置
+  health_check:
+    enabled: true
+    interval: 10  # 健康检查间隔（秒）
+    timeout: 5  # 健康检查超时（秒）
+    failure_threshold: 3  # 失败阈值
+    
+  # 故障检测配置
+  fault_detection:
+    enabled: true
+    detection_interval: 5
+    metrics_thresholds:
+      response_time: 10.0  # 响应时间阈值（秒）
+      error_rate: 0.1  # 错误率阈值
+      memory_usage: 0.9  # 内存使用率阈值
+      cpu_usage: 0.9  # CPU使用率阈值
+    
+  # 自动恢复配置
+  auto_recovery:
+    enabled: true
+    recovery_timeout: 30
+    max_recovery_attempts: 3
+    recovery_strategies:
+      - "restart_agent"
+      - "reallocate_tasks"
+      - "failover"
+    
+  # 熔断器配置
+  circuit_breaker:
+    enabled: true
+    failure_threshold: 5
+    recovery_timeout: 60
+    half_open_max_calls: 3
+
+# 协调引擎配置
+coordination_engine:
+  # 协调类型配置
+  coordination_type: "centralized"  # centralized, distributed, hybrid
+  
+  # 任务调度配置
+  task_scheduling:
+    policy: "priority_based"  # fifo, priority_based, deadline_based
+    max_concurrent_tasks: 20
+    task_timeout: 300  # 任务超时时间（秒）
+    
+  # 冲突解决配置
+  conflict_resolution:
+    enabled: true
+    resolution_timeout: 30
+    strategies:
+      - "priority_based"
+      - "resource_based"
+      - "time_based"
+    
+  # 事件处理配置
+  event_handling:
+    enabled: true
+    event_queue_size: 1000
+    processing_timeout: 10
+    retry_attempts: 3
+
+# 性能优化配置
+performance:
+  # 缓存配置
+  caching:
+    enabled: true
+    cache_size: 1000
+    ttl: 300  # 缓存生存时间（秒）
+    eviction_policy: "lru"  # lru, lfu, fifo
+    
+  # 连接池配置
+  connection_pooling:
+    enabled: true
+    max_connections: 20
+    min_connections: 5
+    connection_timeout: 30
+    
+  # 异步处理配置
+  async_processing:
+    enabled: true
+    max_workers: 10
+    queue_size: 1000
+    batch_size: 10
+
+# 安全配置
+security:
+  # 认证配置
+  authentication:
+    enabled: true
+    method: "token"  # token, certificate, oauth
+    token_expiry: 3600  # 令牌过期时间（秒）
+    
+  # 授权配置
+  authorization:
+    enabled: true
+    rbac_enabled: true
+    default_role: "agent"
+    
+  # 加密配置
+  encryption:
+    enabled: true
+    algorithm: "AES-256-GCM"
+    key_rotation_interval: 86400  # 密钥轮换间隔（秒）
+    
+  # 审计配置
+  auditing:
+    enabled: true
+    log_level: "INFO"
+    retention_days: 30
+
+# 日志配置
+logging:
+  # 日志级别
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  
+  # 日志格式
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # 日志输出
+  handlers:
+    console:
+      enabled: true
+      level: "INFO"
+    file:
+      enabled: true
+      level: "DEBUG"
+      filename: "multi_agent_system.log"
+      max_size: 10485760  # 10MB
+      backup_count: 5
+    
+  # 结构化日志
+  structured_logging:
+    enabled: true
+    format: "json"
+
+# 监控配置
+monitoring:
+  # 指标收集
+  metrics:
+    enabled: true
+    collection_interval: 10
+    retention_days: 7
+    
+  # 告警配置
+  alerts:
+    enabled: true
+    channels:
+      - "email"
+      - "slack"
+    thresholds:
+      error_rate: 0.05
+      response_time: 5.0
+      memory_usage: 0.8
+      cpu_usage: 0.8
+      
+  # 仪表板配置
+  dashboard:
+    enabled: true
+    port: 3000
+    refresh_interval: 5
+
+# 部署配置
+deployment:
+  # 环境配置
+  environment: "development"  # development, staging, production
+  
+  # 容器配置
+  container:
+    enabled: false
+    image: "multi-agent-system:latest"
+    resources:
+      cpu_limit: "2"
+      memory_limit: "4Gi"
+      
+  # 扩展配置
+  scaling:
+    enabled: false
+    min_replicas: 1
+    max_replicas: 10
+    target_cpu_utilization: 70
+    target_memory_utilization: 80
+
+# 测试配置
+testing:
+  # 单元测试配置
+  unit_tests:
+    enabled: true
+    coverage_threshold: 80
+    
+  # 集成测试配置
+  integration_tests:
+    enabled: true
+    test_timeout: 300
+    
+  # 性能测试配置
+  performance_tests:
+    enabled: true
+    load_test_duration: 300
+    concurrent_users: 100
+    
+  # 压力测试配置
+  stress_tests:
+    enabled: true
+    max_load_multiplier: 5.0
+    ramp_up_time: 60

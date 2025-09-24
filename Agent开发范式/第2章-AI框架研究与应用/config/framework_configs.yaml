@@ -1,0 +1,346 @@
+# framework_configs.yaml
+# 第2章 AI框架研究与应用 - 配置文件集合
+
+# LangChain配置
+langchain:
+  llm:
+    model: "gpt-3.5-turbo"
+    temperature: 0.7
+    max_tokens: 2000
+    timeout: 120
+  
+  memory:
+    buffer_size: 1000
+    return_messages: true
+    memory_key: "chat_history"
+  
+  agents:
+    agent_type: "ZERO_SHOT_REACT_DESCRIPTION"
+    max_iterations: 10
+    verbose: true
+    handle_parsing_errors: true
+  
+  tools:
+    max_tool_calls: 5
+    tool_timeout: 30
+    parallel_execution: true
+  
+  chains:
+    max_chain_length: 10
+    verbose: true
+  
+  vectorstore:
+    collection_name: "langchain_docs"
+    embedding_model: "text-embedding-ada-002"
+    chunk_size: 1000
+    chunk_overlap: 200
+
+# CrewAI配置
+crewai:
+  llm:
+    model: "gpt-3.5-turbo"
+    temperature: 0.7
+    max_tokens: 2000
+    timeout: 120
+  
+  agents:
+    max_consecutive_auto_reply: 3
+    verbose: true
+    allow_delegation: false
+    memory: true
+  
+  tasks:
+    max_iterations: 5
+    timeout: 300
+    verbose: true
+  
+  crews:
+    process: "sequential"  # sequential, hierarchical, parallel
+    verbose: true
+    memory: true
+  
+  tools:
+    max_tool_calls: 3
+    tool_timeout: 30
+
+# AutoGen配置
+autogen:
+  llm_config:
+    model: "gpt-3.5-turbo"
+    temperature: 0.7
+    timeout: 120
+    max_tokens: 2000
+  
+  agents:
+    human_input_mode: "NEVER"
+    max_consecutive_auto_reply: 3
+    verbose: true
+  
+  group_chat:
+    max_round: 10
+    speaker_selection_method: "auto"
+  
+  code_execution:
+    timeout: 10
+    work_dir: "temp_code"
+  
+  function_calling:
+    max_function_calls: 5
+    function_timeout: 30
+
+# LangGraph配置
+langgraph:
+  llm:
+    model: "gpt-3.5-turbo"
+    temperature: 0.7
+    max_tokens: 2000
+    timeout: 120
+  
+  state:
+    max_state_size: 10000
+    state_compression: true
+  
+  nodes:
+    max_execution_time: 60
+    retry_count: 3
+    verbose: true
+  
+  edges:
+    max_conditional_depth: 5
+    timeout: 30
+  
+  workflow:
+    max_iterations: 100
+    checkpoint: true
+    interrupt_before: []
+    interrupt_after: []
+
+# 通用配置
+common:
+  api_keys:
+    openai: "${OPENAI_API_KEY}"
+    anthropic: "${ANTHROPIC_API_KEY}"
+    google: "${GOOGLE_API_KEY}"
+  
+  logging:
+    level: "INFO"
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    file: "logs/framework_demo.log"
+    max_size: "10MB"
+    backup_count: 5
+  
+  performance:
+    enable_profiling: true
+    memory_monitoring: true
+    execution_timing: true
+  
+  security:
+    input_validation: true
+    output_filtering: true
+    rate_limiting: true
+    max_requests_per_minute: 100
+
+# 演示配置
+demo:
+  examples:
+    langchain:
+      - "basic_llm"
+      - "prompt_template"
+      - "conversation_chain"
+      - "agent_with_tools"
+      - "vector_store"
+      - "streaming"
+      - "custom_tool"
+      - "chain_composition"
+      - "async"
+      - "error_handling"
+      - "performance_optimization"
+    
+    crewai:
+      - "basic_crew"
+      - "hierarchical_crew"
+      - "parallel_crew"
+      - "custom_tool"
+      - "memory"
+      - "delegation"
+      - "error_handling"
+      - "performance_optimization"
+      - "async"
+    
+    autogen:
+      - "basic_conversation"
+      - "group_chat"
+      - "code_execution"
+      - "function_calling"
+      - "multimodal"
+      - "hierarchical_agents"
+      - "memory"
+      - "error_handling"
+      - "performance_optimization"
+      - "async"
+    
+    langgraph:
+      - "basic_workflow"
+      - "conditional_workflow"
+      - "loop_workflow"
+      - "tool_integration"
+      - "parallel_execution"
+      - "error_handling"
+      - "performance_optimization"
+      - "async"
+  
+  benchmarks:
+    test_cases:
+      - "basic_task"
+      - "complex_workflow"
+      - "multi_agent_collaboration"
+      - "memory_management"
+      - "tool_execution"
+      - "error_handling"
+    
+    metrics:
+      - "execution_time"
+      - "memory_usage"
+      - "success_rate"
+      - "error_rate"
+      - "throughput"
+      - "latency"
+  
+  integration:
+    scenarios:
+      - "smart_customer_service"
+      - "content_generation_pipeline"
+      - "data_analysis_workflow"
+      - "multi_agent_research"
+    
+    components:
+      - "message_broker"
+      - "shared_memory"
+      - "error_handler"
+      - "performance_monitor"
+
+# 测试配置
+testing:
+  unit_tests:
+    coverage_threshold: 80
+    test_timeout: 30
+    parallel_execution: true
+  
+  integration_tests:
+    test_timeout: 120
+    retry_count: 3
+    cleanup_after_test: true
+  
+  performance_tests:
+    load_test_duration: 300  # seconds
+    concurrent_users: 10
+    ramp_up_time: 60  # seconds
+  
+  security_tests:
+    input_validation_tests: true
+    output_filtering_tests: true
+    rate_limiting_tests: true
+    permission_tests: true
+
+# 部署配置
+deployment:
+  environments:
+    development:
+      debug: true
+      hot_reload: true
+      log_level: "DEBUG"
+    
+    staging:
+      debug: false
+      hot_reload: false
+      log_level: "INFO"
+    
+    production:
+      debug: false
+      hot_reload: false
+      log_level: "WARNING"
+  
+  scaling:
+    horizontal_scaling: true
+    max_instances: 10
+    min_instances: 1
+    auto_scaling: true
+  
+  monitoring:
+    metrics_collection: true
+    health_checks: true
+    alerting: true
+    log_aggregation: true
+
+# 功能开关
+features:
+  frameworks:
+    langchain: true
+    crewai: true
+    autogen: true
+    langgraph: true
+  
+  capabilities:
+    multi_agent: true
+    workflow_management: true
+    memory_management: true
+    tool_execution: true
+    async_processing: true
+    error_handling: true
+    performance_monitoring: true
+  
+  integrations:
+    vector_databases: true
+    message_queues: true
+    monitoring_tools: true
+    logging_systems: true
+  
+  experimental:
+    federated_learning: false
+    blockchain_integration: false
+    quantum_computing: false
+    edge_deployment: false
+
+# 资源限制
+limits:
+  memory:
+    max_usage: "2GB"
+    warning_threshold: "1.5GB"
+    critical_threshold: "1.8GB"
+  
+  cpu:
+    max_usage: 80  # percentage
+    warning_threshold: 70
+    critical_threshold: 90
+  
+  disk:
+    max_usage: "10GB"
+    warning_threshold: "8GB"
+    critical_threshold: "9GB"
+  
+  network:
+    max_bandwidth: "100MB/s"
+    connection_limit: 1000
+    timeout: 30
+
+# 错误处理配置
+error_handling:
+  retry_policy:
+    max_retries: 3
+    backoff_factor: 2
+    max_delay: 60  # seconds
+  
+  fallback_strategies:
+    graceful_degradation: true
+    circuit_breaker: true
+    timeout_handling: true
+  
+  logging:
+    log_errors: true
+    log_stack_traces: true
+    error_reporting: true
+  
+  recovery:
+    auto_recovery: true
+    recovery_timeout: 300  # seconds
+    health_check_interval: 60  # seconds

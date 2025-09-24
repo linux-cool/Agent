@@ -1,0 +1,212 @@
+# config.yaml
+# AI智能体配置文件模板
+
+agent:
+  name: "MyAgent"
+  version: "1.0.0"
+  description: "A sample AI agent based on six core pillars"
+  author: "Agent Research Team"
+  created_at: "2025-01-01"
+
+# 记忆系统配置
+memory:
+  short_term:
+    max_size: 1000
+    ttl: 3600  # seconds
+    cleanup_threshold: 0.8
+  long_term:
+    storage_type: "vector_db"  # vector_db, database, file
+    collection_name: "agent_memory"
+    embedding_model: "text-embedding-ada-002"
+  process:
+    max_steps: 100
+    retention_days: 30
+
+# 工具配置
+tools:
+  - name: "calculator"
+    type: "builtin"
+    enabled: true
+    description: "Mathematical calculation tool"
+  - name: "web_search"
+    type: "external"
+    enabled: true
+    api_key: "${WEB_SEARCH_API_KEY}"
+    endpoint: "https://api.search.com/v1/search"
+  - name: "file_manager"
+    type: "builtin"
+    enabled: true
+    allowed_paths: ["/tmp", "/data"]
+  - name: "database_query"
+    type: "external"
+    enabled: false
+    connection_string: "${DATABASE_URL}"
+
+# 大语言模型配置
+llm:
+  provider: "openai"  # openai, anthropic, local
+  model: "gpt-4"
+  temperature: 0.7
+  max_tokens: 2000
+  timeout: 30
+  retry_count: 3
+  api_key: "${OPENAI_API_KEY}"
+  
+  # 本地模型配置
+  local:
+    model_path: "/path/to/model"
+    device: "cuda"  # cuda, cpu
+    batch_size: 1
+
+# 安全配置
+security:
+  max_iterations: 10
+  timeout: 300  # seconds
+  rate_limit: 100  # requests per minute
+  input_validation: true
+  output_filtering: true
+  
+  # 权限控制
+  permissions:
+    file_access: ["read", "write"]
+    network_access: true
+    tool_execution: true
+  
+  # 安全护栏
+  guardrails:
+    content_filter: true
+    toxicity_detection: true
+    privacy_protection: true
+
+# 多智能体协作配置
+multi_agent:
+  enabled: true
+  coordinator:
+    type: "centralized"  # centralized, distributed, hybrid
+    heartbeat_interval: 30  # seconds
+    timeout: 60  # seconds
+  
+  communication:
+    protocol: "json"  # json, protobuf, msgpack
+    compression: true
+    encryption: false
+  
+  task_allocation:
+    strategy: "load_balanced"  # load_balanced, capability_based, cost_optimized
+    max_retries: 3
+
+# 监控配置
+monitoring:
+  enabled: true
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  metrics_endpoint: "http://localhost:9090/metrics"
+  
+  # 日志配置
+  logging:
+    file: "logs/agent.log"
+    max_size: "10MB"
+    backup_count: 5
+    format: "json"  # json, text
+  
+  # 性能监控
+  performance:
+    track_response_time: true
+    track_memory_usage: true
+    track_cpu_usage: true
+    alert_thresholds:
+      response_time: 5000  # ms
+      memory_usage: 80  # percentage
+      cpu_usage: 90  # percentage
+
+# 数据库配置
+database:
+  primary:
+    type: "postgresql"
+    host: "localhost"
+    port: 5432
+    database: "agent_db"
+    username: "${DB_USERNAME}"
+    password: "${DB_PASSWORD}"
+    pool_size: 10
+  
+  cache:
+    type: "redis"
+    host: "localhost"
+    port: 6379
+    password: "${REDIS_PASSWORD}"
+    db: 0
+  
+  vector:
+    type: "chroma"  # chroma, pinecone, weaviate
+    host: "localhost"
+    port: 8000
+    collection: "agent_embeddings"
+
+# 部署配置
+deployment:
+  environment: "development"  # development, staging, production
+  replicas: 1
+  resources:
+    cpu: "500m"
+    memory: "1Gi"
+  
+  # 健康检查
+  health_check:
+    enabled: true
+    path: "/health"
+    interval: 30  # seconds
+    timeout: 5  # seconds
+  
+  # 自动扩缩容
+  autoscaling:
+    enabled: false
+    min_replicas: 1
+    max_replicas: 10
+    target_cpu: 70  # percentage
+
+# 开发配置
+development:
+  debug: true
+  hot_reload: true
+  test_mode: false
+  
+  # 测试配置
+  testing:
+    mock_llm: false
+    mock_tools: false
+    test_data_path: "tests/data"
+  
+  # 开发工具
+  tools:
+    profiler: true
+    debugger: true
+    code_coverage: true
+
+# 环境变量
+environment:
+  # 必需的环境变量
+  required:
+    - OPENAI_API_KEY
+    - DATABASE_URL
+  
+  # 可选的环境变量
+  optional:
+    - WEB_SEARCH_API_KEY
+    - REDIS_PASSWORD
+    - DB_USERNAME
+    - DB_PASSWORD
+
+# 功能开关
+features:
+  autonomous_loop: true
+  multi_agent_coordination: true
+  memory_management: true
+  tool_execution: true
+  security_controls: true
+  monitoring: true
+  
+  # 实验性功能
+  experimental:
+    reinforcement_learning: false
+    federated_learning: false
+    blockchain_integration: false

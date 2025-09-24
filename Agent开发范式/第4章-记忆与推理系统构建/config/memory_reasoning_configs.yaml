@@ -1,0 +1,386 @@
+# 第4章 记忆与推理系统构建 配置示例
+
+# 记忆系统配置
+memory_system:
+  name: "AgentMemorySystem"
+  description: "智能体记忆系统，支持多种记忆类型和检索方式"
+  max_memories: 10000
+  memory_types:
+    - "episodic"      # 情景记忆
+    - "semantic"      # 语义记忆
+    - "procedural"    # 程序记忆
+    - "working"       # 工作记忆
+  retention_policy: "lru"  # lru, fifo, importance_based
+  compression_enabled: true
+  encryption_enabled: false
+  
+  # 记忆存储配置
+  storage:
+    type: "memory"  # memory, file, database
+    file_path: "./data/memories.json"
+    database_url: "sqlite:///memories.db"
+    backup_enabled: true
+    backup_interval_hours: 24
+  
+  # 记忆检索配置
+  retrieval:
+    similarity_threshold: 0.7
+    max_results: 20
+    context_window_size: 5
+    temporal_weight: 0.3
+    importance_weight: 0.4
+    relevance_weight: 0.3
+  
+  # 记忆管理配置
+  management:
+    auto_cleanup_enabled: true
+    cleanup_threshold: 0.1  # 重要性低于此值的记忆将被清理
+    consolidation_enabled: true
+    consolidation_interval_hours: 12
+    forgetting_curve_enabled: true
+    forgetting_rate: 0.1
+
+# 知识图谱配置
+knowledge_graph:
+  name: "AgentKnowledgeGraph"
+  description: "智能体知识图谱，存储实体、关系和属性"
+  max_entities: 50000
+  max_relations: 100000
+  
+  # 实体配置
+  entities:
+    default_confidence: 0.8
+    auto_extraction_enabled: true
+    extraction_threshold: 0.6
+    supported_types:
+      - "PERSON"
+      - "ORGANIZATION"
+      - "LOCATION"
+      - "EVENT"
+      - "CONCEPT"
+      - "OBJECT"
+      - "TIME"
+      - "QUANTITY"
+  
+  # 关系配置
+  relations:
+    default_confidence: 0.7
+    auto_extraction_enabled: true
+    extraction_threshold: 0.5
+    supported_types:
+      - "IS_A"
+      - "PART_OF"
+      - "LOCATED_IN"
+      - "WORKS_FOR"
+      - "FOUNDED"
+      - "OCCURRED_IN"
+      - "RELATED_TO"
+      - "CAUSES"
+      - "PRECEDES"
+      - "FOLLOWS"
+  
+  # 图存储配置
+  storage:
+    type: "networkx"  # networkx, neo4j, arangodb
+    neo4j_url: "bolt://localhost:7687"
+    neo4j_user: "neo4j"
+    neo4j_password: "password"
+    arangodb_url: "http://localhost:8529"
+    arangodb_database: "knowledge_graph"
+  
+  # 图分析配置
+  analysis:
+    centrality_enabled: true
+    community_detection_enabled: true
+    path_finding_enabled: true
+    subgraph_extraction_enabled: true
+    similarity_calculation_enabled: true
+
+# 推理引擎配置
+reasoning_engine:
+  name: "AgentReasoningEngine"
+  description: "智能体推理引擎，支持多种推理类型和方法"
+  max_rules: 5000
+  max_facts: 10000
+  
+  # 规则引擎配置
+  rule_engine:
+    max_working_memory: 1000
+    inference_timeout_seconds: 30
+    rule_priority_enabled: true
+    conflict_resolution: "priority"  # priority, recency, confidence
+    
+    # 推理方法配置
+    methods:
+      forward_chaining:
+        enabled: true
+        max_iterations: 100
+        goal_directed: true
+      backward_chaining:
+        enabled: true
+        max_depth: 10
+        pruning_enabled: true
+      resolution:
+        enabled: true
+        max_steps: 50
+        timeout_seconds: 10
+  
+  # 概率推理配置
+  probabilistic_reasoning:
+    enabled: true
+    bayesian_network:
+      max_variables: 1000
+      max_edges: 2000
+      inference_method: "variable_elimination"  # variable_elimination, sampling
+    monte_carlo:
+      enabled: true
+      sample_size: 10000
+      convergence_threshold: 0.01
+  
+  # 逻辑推理配置
+  logical_reasoning:
+    enabled: true
+    propositional_logic:
+      enabled: true
+      max_propositions: 1000
+    first_order_logic:
+      enabled: false
+      max_predicates: 100
+    temporal_logic:
+      enabled: true
+      max_time_points: 100
+
+# 学习系统配置
+learning_system:
+  name: "AgentLearningSystem"
+  description: "智能体学习系统，支持多种学习类型和算法"
+  max_tasks: 100
+  max_training_data: 100000
+  
+  # 监督学习配置
+  supervised_learning:
+    enabled: true
+    algorithms:
+      linear_regression:
+        enabled: true
+        regularization: "l2"
+        alpha: 0.01
+      logistic_regression:
+        enabled: true
+        max_iterations: 1000
+        learning_rate: 0.01
+      decision_tree:
+        enabled: true
+        max_depth: 10
+        min_samples_split: 2
+      random_forest:
+        enabled: true
+        n_estimators: 100
+        max_depth: 10
+      svm:
+        enabled: true
+        kernel: "rbf"
+        c: 1.0
+      neural_network:
+        enabled: true
+        hidden_layers: [64, 32]
+        activation: "relu"
+        learning_rate: 0.001
+        epochs: 100
+  
+  # 无监督学习配置
+  unsupervised_learning:
+    enabled: true
+    algorithms:
+      k_means:
+        enabled: true
+        max_clusters: 20
+        max_iterations: 100
+      dbscan:
+        enabled: true
+        eps: 0.5
+        min_samples: 5
+      pca:
+        enabled: true
+        n_components: 0.95
+      hierarchical_clustering:
+        enabled: true
+        linkage: "ward"
+        distance_threshold: 0.5
+  
+  # 强化学习配置
+  reinforcement_learning:
+    enabled: true
+    algorithms:
+      q_learning:
+        enabled: true
+        learning_rate: 0.1
+        discount_factor: 0.9
+        epsilon: 0.1
+        epsilon_decay: 0.995
+      policy_gradient:
+        enabled: true
+        learning_rate: 0.01
+        baseline_enabled: true
+      actor_critic:
+        enabled: true
+        actor_lr: 0.001
+        critic_lr: 0.01
+  
+  # 模型管理配置
+  model_management:
+    auto_save_enabled: true
+    save_interval_hours: 6
+    model_versioning_enabled: true
+    max_model_versions: 10
+    model_evaluation_enabled: true
+    cross_validation_folds: 5
+
+# 检索系统配置
+retrieval_system:
+  name: "AgentRetrievalSystem"
+  description: "智能体检索系统，支持多种检索类型和相似度度量"
+  max_documents: 100000
+  max_queries: 10000
+  
+  # 文本处理配置
+  text_processing:
+    tokenization:
+      method: "simple"  # simple, jieba, nltk, spacy
+      language: "zh"    # zh, en
+    stop_words:
+      enabled: true
+      custom_stop_words: ["的", "了", "在", "是"]
+    stemming:
+      enabled: false
+      method: "porter"  # porter, snowball
+    lemmatization:
+      enabled: false
+  
+  # 索引配置
+  indexing:
+    inverted_index:
+      enabled: true
+      compression: true
+      max_terms: 1000000
+    vector_index:
+      enabled: true
+      embedding_dimension: 300
+      similarity_metric: "cosine"  # cosine, euclidean, dot_product
+      faiss_enabled: false
+      faiss_index_type: "IVFFlat"
+  
+  # 检索配置
+  retrieval:
+    default_limit: 10
+    max_limit: 100
+    similarity_threshold: 0.0
+    reranking_enabled: true
+    reranking_method: "bm25"  # bm25, neural, hybrid
+    
+    # 混合检索配置
+    hybrid_retrieval:
+      enabled: true
+      keyword_weight: 0.4
+      vector_weight: 0.6
+      fusion_method: "rrf"  # rrf, weighted_sum, comb_sum
+  
+  # 缓存配置
+  caching:
+    enabled: true
+    cache_size: 10000
+    ttl_seconds: 3600
+    cache_type: "lru"  # lru, lfu, ttl
+
+# 系统集成配置
+integration:
+  # 组件间通信配置
+  communication:
+    message_queue:
+      enabled: true
+      type: "redis"  # redis, rabbitmq, kafka
+      redis_url: "redis://localhost:6379"
+      rabbitmq_url: "amqp://localhost:5672"
+      kafka_brokers: ["localhost:9092"]
+    
+    api:
+      enabled: true
+      host: "localhost"
+      port: 8000
+      cors_enabled: true
+      rate_limiting_enabled: true
+      max_requests_per_minute: 100
+  
+  # 数据同步配置
+  data_sync:
+    enabled: true
+    sync_interval_seconds: 60
+    conflict_resolution: "latest"  # latest, priority, merge
+  
+  # 监控配置
+  monitoring:
+    enabled: true
+    metrics_collection: true
+    log_level: "INFO"
+    performance_tracking: true
+    error_reporting: true
+    
+    # 指标配置
+    metrics:
+      - "memory_usage"
+      - "response_time"
+      - "throughput"
+      - "error_rate"
+      - "cache_hit_rate"
+    
+    # 告警配置
+    alerts:
+      memory_usage_threshold: 0.8
+      response_time_threshold: 1.0
+      error_rate_threshold: 0.05
+
+# 安全配置
+security:
+  # 数据加密配置
+  encryption:
+    enabled: false
+    algorithm: "AES-256"
+    key_rotation_days: 30
+  
+  # 访问控制配置
+  access_control:
+    enabled: false
+    authentication_required: false
+    authorization_enabled: false
+  
+  # 数据隐私配置
+  privacy:
+    data_anonymization: false
+    gdpr_compliance: false
+    data_retention_days: 365
+
+# 性能优化配置
+performance:
+  # 并发配置
+  concurrency:
+    max_workers: 10
+    thread_pool_size: 20
+    async_enabled: true
+  
+  # 缓存配置
+  caching:
+    global_cache_size: 100000
+    cache_strategy: "lru"
+    preloading_enabled: true
+  
+  # 批处理配置
+  batch_processing:
+    enabled: true
+    batch_size: 100
+    batch_timeout_seconds: 5
+  
+  # 资源限制配置
+  resource_limits:
+    max_memory_mb: 2048
+    max_cpu_percent: 80
+    max_disk_gb: 10

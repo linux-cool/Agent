@@ -1,0 +1,472 @@
+# planning_execution_configs.yaml
+# 第5章 规划与执行引擎开发 - 配置文件
+# 包含规划引擎、执行引擎、任务调度器、资源管理器和监控系统的配置
+
+# 规划引擎配置
+planning_engine:
+  # 规划策略
+  planning_strategy: "DELIBERATIVE"  # HIERARCHICAL, REACTIVE, DELIBERATIVE, HYBRID
+  
+  # LLM配置
+  llm:
+    model: "gpt-4"
+    api_key: "YOUR_LLM_API_KEY"
+    base_url: "https://api.openai.com/v1"
+    temperature: 0.7
+    max_tokens: 2000
+    timeout: 30
+  
+  # 规划参数
+  planning_params:
+    max_planning_depth: 5
+    max_planning_time: 60  # 秒
+    enable_plan_optimization: true
+    enable_plan_evaluation: true
+  
+  # 规划策略特定配置
+  strategies:
+    hierarchical:
+      max_levels: 3
+      abstraction_threshold: 0.8
+    reactive:
+      response_time_threshold: 1.0  # 秒
+      urgency_threshold: 0.9
+    deliberative:
+      search_depth: 10
+      evaluation_criteria: ["efficiency", "cost", "reliability"]
+    hybrid:
+      switching_threshold: 0.7
+      reactive_timeout: 5.0  # 秒
+
+# 执行引擎配置
+execution_engine:
+  # 执行策略
+  execution_strategy: "sequential"  # sequential, parallel, conditional
+  
+  # 执行参数
+  execution_params:
+    max_concurrent_tasks: 10
+    task_timeout: 300  # 秒
+    retry_attempts: 3
+    retry_delay: 5  # 秒
+    enable_rollback: true
+  
+  # 执行策略特定配置
+  strategies:
+    sequential:
+      step_delay: 0.1  # 秒
+      enable_step_validation: true
+    parallel:
+      max_parallel_workers: 5
+      worker_timeout: 60  # 秒
+      enable_worker_monitoring: true
+    conditional:
+      condition_evaluation_timeout: 10  # 秒
+      enable_condition_caching: true
+  
+  # 工具管理
+  tool_management:
+    tool_timeout: 30  # 秒
+    tool_retry_attempts: 2
+    enable_tool_monitoring: true
+    tool_health_check_interval: 60  # 秒
+  
+  # 代理管理
+  agent_management:
+    agent_timeout: 120  # 秒
+    agent_retry_attempts: 2
+    enable_agent_monitoring: true
+    agent_health_check_interval: 30  # 秒
+
+# 任务调度器配置
+task_scheduler:
+  # 调度策略
+  scheduling_policy: "priority"  # FIFO, PRIORITY, SHORTEST_JOB_FIRST, ROUND_ROBIN, DEADLINE_FIRST, RESOURCE_BASED, LOAD_BALANCING
+  
+  # 调度算法
+  scheduling_algorithm: "EDF"  # EDF, RATE_MONOTONIC, DEADLINE_MONOTONIC, LEAST_LAXITY_FIRST, PROPORTIONAL_SHARE, WEIGHTED_ROUND_ROBIN
+  
+  # 调度参数
+  scheduling_params:
+    scheduling_interval: 1.0  # 秒
+    max_queue_size: 1000
+    enable_preemption: true
+    preemption_threshold: 0.8
+    enable_load_balancing: true
+  
+  # 任务管理
+  task_management:
+    max_task_duration: 3600  # 秒
+    task_cleanup_interval: 300  # 秒
+    enable_task_history: true
+    max_task_history: 10000
+  
+  # 代理管理
+  agent_management:
+    max_agents: 50
+    agent_registration_timeout: 30  # 秒
+    agent_heartbeat_interval: 10  # 秒
+    agent_inactive_timeout: 300  # 秒
+  
+  # 调度策略特定配置
+  policies:
+    priority:
+      priority_levels: 5
+      default_priority: 3
+    deadline_first:
+      deadline_tolerance: 60  # 秒
+      enable_deadline_extension: false
+    resource_based:
+      resource_weight: {"CPU": 1.0, "MEMORY": 0.8, "STORAGE": 0.5, "NETWORK": 0.3}
+    load_balancing:
+      load_threshold: 0.8
+      rebalance_interval: 30  # 秒
+
+# 资源管理器配置
+resource_manager:
+  # 监控参数
+  monitoring_interval: 1.0  # 秒
+  optimization_enabled: true
+  optimization_interval: 60  # 秒
+  
+  # 资源池配置
+  resource_pools:
+    CPU:
+      total_amount: 8.0
+      unit: "cores"
+      cost_per_unit: 1.0
+      allocation_strategy: "FIRST_FIT"
+      max_allocation_per_request: 4.0
+      min_allocation_per_request: 0.1
+      constraints:
+        min_available: 1.0
+        max_utilization: 0.95
+    
+    MEMORY:
+      total_amount: 16.0
+      unit: "GB"
+      cost_per_unit: 0.5
+      allocation_strategy: "BEST_FIT"
+      max_allocation_per_request: 8.0
+      min_allocation_per_request: 0.5
+      constraints:
+        min_available: 2.0
+        max_utilization: 0.90
+    
+    STORAGE:
+      total_amount: 100.0
+      unit: "GB"
+      cost_per_unit: 0.1
+      allocation_strategy: "FIRST_FIT"
+      max_allocation_per_request: 50.0
+      min_allocation_per_request: 1.0
+      constraints:
+        min_available: 10.0
+        max_utilization: 0.85
+    
+    NETWORK:
+      total_amount: 1.0
+      unit: "Gbps"
+      cost_per_unit: 2.0
+      allocation_strategy: "PRIORITY_BASED"
+      max_allocation_per_request: 0.5
+      min_allocation_per_request: 0.01
+      constraints:
+        min_available: 0.1
+        max_utilization: 0.80
+  
+  # 分配策略配置
+  allocation_strategies:
+    FIRST_FIT:
+      enable_fragmentation_check: true
+      fragmentation_threshold: 0.3
+    BEST_FIT:
+      enable_waste_minimization: true
+      waste_threshold: 0.1
+    WORST_FIT:
+      enable_large_block_preservation: true
+      large_block_threshold: 0.5
+    PRIORITY_BASED:
+      priority_weight: 0.7
+      cost_weight: 0.3
+    COST_OPTIMIZED:
+      enable_cost_optimization: true
+      cost_threshold: 100.0
+  
+  # 请求管理
+  request_management:
+    max_pending_requests: 500
+    request_timeout: 300  # 秒
+    enable_request_queuing: true
+    queue_priority_strategy: "priority"
+  
+  # 分配管理
+  allocation_management:
+    max_active_allocations: 200
+    allocation_cleanup_interval: 60  # 秒
+    enable_allocation_history: true
+    max_allocation_history: 5000
+
+# 监控系统配置
+monitoring_system:
+  # 指标收集
+  metrics_collection:
+    collection_interval: 2.0  # 秒
+    max_metrics_per_collector: 10000
+    enable_metrics_compression: true
+    compression_threshold: 1000
+  
+  # 告警管理
+  alert_management:
+    evaluation_interval: 5.0  # 秒
+    max_active_alerts: 100
+    alert_retention_days: 30
+    enable_alert_suppression: true
+    suppression_duration: 300  # 秒
+  
+  # 告警规则配置
+  alert_rules:
+    cpu_usage_high:
+      name: "CPU使用率过高"
+      description: "CPU使用率超过80%"
+      metric_name: "cpu_usage_percent"
+      condition: "value > 80"
+      severity: "WARNING"
+      duration: 60  # 秒
+      enabled: true
+    
+    memory_usage_high:
+      name: "内存使用率过高"
+      description: "内存使用率超过90%"
+      metric_name: "memory_usage_percent"
+      condition: "value > 90"
+      severity: "ERROR"
+      duration: 30  # 秒
+      enabled: true
+    
+    disk_usage_high:
+      name: "磁盘使用率过高"
+      description: "磁盘使用率超过95%"
+      metric_name: "disk_usage_percent"
+      condition: "value > 95"
+      severity: "CRITICAL"
+      duration: 15  # 秒
+      enabled: true
+    
+    task_failure_rate_high:
+      name: "任务执行失败率过高"
+      description: "任务执行失败率超过10%"
+      metric_name: "task_failure_rate"
+      condition: "value > 10"
+      severity: "CRITICAL"
+      duration: 120  # 秒
+      enabled: true
+  
+  # 数据存储
+  data_storage:
+    db_path: "monitoring.db"
+    enable_data_retention: true
+    retention_days: 90
+    enable_data_compression: true
+    compression_algorithm: "gzip"
+  
+  # 仪表板配置
+  dashboards:
+    system_overview:
+      name: "系统概览仪表板"
+      description: "系统整体运行状态监控"
+      refresh_interval: 30  # 秒
+      widgets:
+        - type: "line_chart"
+          title: "CPU使用率"
+          metric: "cpu_usage_percent"
+          position: {x: 0, y: 0, w: 6, h: 4}
+        - type: "line_chart"
+          title: "内存使用率"
+          metric: "memory_usage_percent"
+          position: {x: 6, y: 0, w: 6, h: 4}
+        - type: "gauge"
+          title: "磁盘使用率"
+          metric: "disk_usage_percent"
+          position: {x: 0, y: 4, w: 4, h: 4}
+        - type: "table"
+          title: "活跃告警"
+          data_source: "active_alerts"
+          position: {x: 4, y: 4, w: 8, h: 4}
+    
+    task_monitoring:
+      name: "任务监控仪表板"
+      description: "任务执行状态监控"
+      refresh_interval: 15  # 秒
+      widgets:
+        - type: "bar_chart"
+          title: "任务状态分布"
+          metric: "task_status_distribution"
+          position: {x: 0, y: 0, w: 8, h: 4}
+        - type: "line_chart"
+          title: "任务完成率"
+          metric: "task_completion_rate"
+          position: {x: 8, y: 0, w: 4, h: 4}
+        - type: "table"
+          title: "运行中任务"
+          data_source: "running_tasks"
+          position: {x: 0, y: 4, w: 12, h: 4}
+    
+    resource_monitoring:
+      name: "资源监控仪表板"
+      description: "资源使用情况监控"
+      refresh_interval: 20  # 秒
+      widgets:
+        - type: "pie_chart"
+          title: "资源利用率分布"
+          metric: "resource_utilization_distribution"
+          position: {x: 0, y: 0, w: 6, h: 4}
+        - type: "line_chart"
+          title: "资源分配趋势"
+          metric: "resource_allocation_trend"
+          position: {x: 6, y: 0, w: 6, h: 4}
+        - type: "table"
+          title: "资源池状态"
+          data_source: "resource_pool_status"
+          position: {x: 0, y: 4, w: 12, h: 4}
+
+# 系统集成配置
+system_integration:
+  # 组件间通信
+  inter_component_communication:
+    enable_event_bus: true
+    event_bus_type: "redis"  # redis, rabbitmq, kafka
+    event_bus_config:
+      host: "localhost"
+      port: 6379
+      db: 0
+      password: ""
+    
+    # 事件类型
+    event_types:
+      - "task_submitted"
+      - "task_scheduled"
+      - "task_started"
+      - "task_completed"
+      - "task_failed"
+      - "resource_allocated"
+      - "resource_deallocated"
+      - "alert_triggered"
+      - "alert_resolved"
+  
+  # 数据同步
+  data_synchronization:
+    enable_data_sync: true
+    sync_interval: 10  # 秒
+    sync_strategy: "incremental"  # full, incremental
+    enable_conflict_resolution: true
+  
+  # 健康检查
+  health_check:
+    enable_health_check: true
+    health_check_interval: 30  # 秒
+    health_check_timeout: 10  # 秒
+    enable_auto_recovery: true
+    recovery_attempts: 3
+
+# 日志配置
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  handlers:
+    - type: "console"
+      enabled: true
+    - type: "file"
+      enabled: true
+      filename: "planning_execution.log"
+      max_bytes: 10485760  # 10MB
+      backup_count: 5
+  
+  # 组件特定日志级别
+  component_log_levels:
+    planning_engine: "INFO"
+    execution_engine: "INFO"
+    task_scheduler: "INFO"
+    resource_manager: "INFO"
+    monitoring_system: "INFO"
+
+# 性能配置
+performance:
+  # 并发控制
+  concurrency:
+    max_concurrent_plans: 10
+    max_concurrent_executions: 20
+    max_concurrent_tasks: 100
+    max_concurrent_resource_requests: 50
+  
+  # 缓存配置
+  caching:
+    enable_plan_cache: true
+    plan_cache_size: 1000
+    plan_cache_ttl: 3600  # 秒
+    
+    enable_metric_cache: true
+    metric_cache_size: 10000
+    metric_cache_ttl: 300  # 秒
+    
+    enable_alert_cache: true
+    alert_cache_size: 500
+    alert_cache_ttl: 1800  # 秒
+  
+  # 优化配置
+  optimization:
+    enable_plan_optimization: true
+    optimization_threshold: 0.1
+    enable_resource_optimization: true
+    resource_optimization_interval: 300  # 秒
+
+# 安全配置
+security:
+  # 访问控制
+  access_control:
+    enable_authentication: true
+    authentication_method: "token"  # token, oauth, ldap
+    token_expiry: 3600  # 秒
+    
+    enable_authorization: true
+    authorization_model: "rbac"  # rbac, abac
+    default_role: "user"
+  
+  # 数据保护
+  data_protection:
+    enable_encryption: true
+    encryption_algorithm: "AES-256"
+    enable_data_masking: true
+    
+    enable_audit_logging: true
+    audit_log_retention_days: 365
+  
+  # 网络安全
+  network_security:
+    enable_ssl: true
+    ssl_cert_path: "cert.pem"
+    ssl_key_path: "key.pem"
+    
+    enable_rate_limiting: true
+    rate_limit_requests_per_minute: 100
+    rate_limit_burst_size: 20
+
+# 开发配置
+development:
+  # 调试模式
+  debug_mode: false
+  enable_debug_logging: false
+  enable_profiling: false
+  
+  # 测试配置
+  testing:
+    enable_mock_services: false
+    mock_llm_responses: false
+    test_data_path: "test_data/"
+  
+  # 开发工具
+  dev_tools:
+    enable_swagger_ui: true
+    swagger_ui_path: "/docs"
+    enable_metrics_endpoint: true
+    metrics_endpoint_path: "/metrics"

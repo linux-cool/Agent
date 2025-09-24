@@ -1,0 +1,574 @@
+# enterprise_configs.yaml
+# 第6章 企业级智能体应用 - 配置文件
+# 包含企业级智能体应用的所有配置项
+
+# 企业应用场景分析配置
+enterprise_scenarios:
+  requirements:
+    analysis_depth: "detailed"  # basic, detailed, comprehensive
+    include_technical_requirements: true
+    include_business_requirements: true
+    include_security_requirements: true
+    include_compliance_requirements: true
+  
+  impact:
+    assessment_method: "quantitative"  # qualitative, quantitative, hybrid
+    time_horizon: "12_months"  # 3_months, 6_months, 12_months, 24_months
+    include_roi_calculation: true
+    include_risk_assessment: true
+  
+  recommendations:
+    include_architecture_recommendations: true
+    include_technology_recommendations: true
+    include_process_recommendations: true
+    include_resource_recommendations: true
+    priority_threshold: "medium"  # low, medium, high, critical
+
+# 智能客服系统配置
+customer_service:
+  chat:
+    knowledge_base:
+      search_limit: 5
+      similarity_threshold: 0.7
+      enable_semantic_search: true
+      cache_size: 1000
+    
+    sentiment:
+      enable_sentiment_analysis: true
+      confidence_threshold: 0.6
+      include_emotion_detection: true
+    
+    intent:
+      enable_intent_classification: true
+      confidence_threshold: 0.5
+      fallback_intent: "unknown"
+  
+  tickets:
+    auto_creation: true
+    sla_rules:
+      high_priority: "1_hour"
+      medium_priority: "4_hours"
+      low_priority: "24_hours"
+      default_priority: "72_hours"
+    
+    categories:
+      - "账户管理"
+      - "售后服务"
+      - "订单管理"
+      - "产品咨询"
+      - "技术支持"
+      - "投诉建议"
+  
+  escalation:
+    confidence_threshold: 0.3
+    sentiment_threshold: "negative"
+    timeout_threshold: "10_minutes"
+    retry_limit: 3
+    escalation_levels:
+      - "level_1"
+      - "level_2"
+      - "level_3"
+      - "manager"
+  
+  analytics:
+    enable_interaction_recording: true
+    enable_performance_metrics: true
+    enable_customer_satisfaction_tracking: true
+    data_retention_days: 365
+
+# 代码助手配置
+code_assistant:
+  analysis:
+    enable_code_quality_analysis: true
+    enable_security_analysis: true
+    enable_performance_analysis: true
+    enable_complexity_analysis: true
+    
+    quality_rules:
+      max_line_length: 120
+      max_function_length: 50
+      max_class_length: 200
+      max_complexity: 10
+    
+    security_rules:
+      enable_sql_injection_detection: true
+      enable_xss_detection: true
+      enable_injection_detection: true
+      enable_hardcoded_secrets_detection: true
+  
+  generation:
+    enable_function_generation: true
+    enable_class_generation: true
+    enable_api_generation: true
+    enable_test_generation: true
+    
+    templates:
+      python_function: "python_function_template"
+      python_class: "python_class_template"
+      javascript_function: "javascript_function_template"
+      api_endpoint: "api_endpoint_template"
+  
+  testing:
+    frameworks:
+      - "pytest"
+      - "unittest"
+      - "jest"
+      - "mocha"
+    
+    test_types:
+      - "unit"
+      - "integration"
+      - "functional"
+      - "performance"
+      - "security"
+    
+    coverage_threshold: 80
+  
+  documentation:
+    enable_api_docs: true
+    enable_readme_generation: true
+    enable_code_comments: true
+    enable_architecture_docs: true
+    
+    formats:
+      - "markdown"
+      - "html"
+      - "pdf"
+      - "json"
+
+# 业务流程自动化配置
+business_automation:
+  workflow:
+    enable_process_validation: true
+    enable_process_execution: true
+    enable_process_monitoring: true
+    
+    execution:
+      max_concurrent_processes: 100
+      process_timeout: "1_hour"
+      retry_attempts: 3
+      retry_delay: "5_minutes"
+    
+    deployment:
+      auto_deploy: true
+      version_control: true
+      rollback_enabled: true
+  
+  rules:
+    enable_rule_engine: true
+    enable_rule_evaluation: true
+    enable_rule_execution: true
+    
+    evaluation:
+      max_rules_per_evaluation: 100
+      evaluation_timeout: "30_seconds"
+      cache_evaluation_results: true
+    
+    execution:
+      max_actions_per_rule: 10
+      action_timeout: "10_seconds"
+      enable_action_logging: true
+  
+  templates:
+    employee_onboarding:
+      enabled: true
+      auto_assign: true
+      sla_hours: 24
+    
+    purchase_approval:
+      enabled: true
+      auto_assign: true
+      sla_hours: 48
+    
+    customer_onboarding:
+      enabled: true
+      auto_assign: true
+      sla_hours: 12
+
+# 部署运维配置
+deployment_ops:
+  container:
+    docker:
+      enable_docker: true
+      registry_url: "localhost:5000"
+      build_timeout: "30_minutes"
+      push_timeout: "10_minutes"
+    
+    kubernetes:
+      enable_kubernetes: true
+      namespace: "default"
+      resource_limits:
+        cpu: "1000m"
+        memory: "2Gi"
+      resource_requests:
+        cpu: "500m"
+        memory: "1Gi"
+  
+  monitoring:
+    enable_monitoring: true
+    monitoring_interval: 30  # seconds
+    metrics_retention_days: 30
+    
+    metrics:
+      enable_system_metrics: true
+      enable_application_metrics: true
+      enable_business_metrics: true
+      
+      system_metrics:
+        - "cpu_usage"
+        - "memory_usage"
+        - "disk_usage"
+        - "network_io"
+      
+      application_metrics:
+        - "response_time"
+        - "throughput"
+        - "error_rate"
+        - "availability"
+    
+    alerts:
+      enable_alerts: true
+      alert_channels:
+        - "email"
+        - "slack"
+        - "webhook"
+      
+      alert_rules:
+        high_cpu:
+          condition: "cpu_usage > 80"
+          level: "warning"
+          message: "CPU使用率过高"
+        
+        high_memory:
+          condition: "memory_usage > 90"
+          level: "error"
+          message: "内存使用率过高"
+        
+        service_down:
+          condition: "status != 'healthy'"
+          level: "critical"
+          message: "服务不可用"
+        
+        high_response_time:
+          condition: "response_time > 5000"
+          level: "warning"
+          message: "响应时间过长"
+  
+  logging:
+    enable_logging: true
+    log_level: "INFO"
+    log_storage: "file"  # file, database, elasticsearch
+    
+    log_retention:
+      days: 30
+      max_size: "1GB"
+      compression: true
+    
+    log_formats:
+      - "json"
+      - "text"
+      - "structured"
+    
+    log_sources:
+      - "application"
+      - "system"
+      - "security"
+      - "audit"
+
+# 安全配置
+security:
+  authentication:
+    enable_authentication: true
+    auth_method: "jwt"  # jwt, oauth2, saml, ldap
+    token_expiry: "24_hours"
+    refresh_token_expiry: "7_days"
+  
+  authorization:
+    enable_authorization: true
+    rbac_enabled: true
+    permission_model: "resource_based"
+    
+    roles:
+      - "admin"
+      - "developer"
+      - "operator"
+      - "viewer"
+    
+    permissions:
+      - "read"
+      - "write"
+      - "delete"
+      - "execute"
+      - "deploy"
+      - "monitor"
+  
+  encryption:
+    enable_encryption: true
+    encryption_algorithm: "AES-256"
+    key_rotation_days: 90
+    
+    data_encryption:
+      at_rest: true
+      in_transit: true
+      in_use: false
+  
+  audit:
+    enable_audit_logging: true
+    audit_events:
+      - "login"
+      - "logout"
+      - "create"
+      - "update"
+      - "delete"
+      - "deploy"
+      - "rollback"
+    
+    audit_retention_days: 365
+
+# 性能配置
+performance:
+  caching:
+    enable_caching: true
+    cache_type: "redis"  # redis, memcached, in_memory
+    cache_ttl: "1_hour"
+    cache_size: "1GB"
+  
+  optimization:
+    enable_query_optimization: true
+    enable_connection_pooling: true
+    enable_async_processing: true
+    
+    connection_pool:
+      min_connections: 5
+      max_connections: 50
+      connection_timeout: "30_seconds"
+  
+  scaling:
+    enable_auto_scaling: true
+    min_replicas: 1
+    max_replicas: 10
+    target_cpu_utilization: 70
+    target_memory_utilization: 80
+
+# 数据库配置
+database:
+  primary:
+    type: "postgresql"
+    host: "localhost"
+    port: 5432
+    database: "enterprise_agents"
+    username: "agent_user"
+    password: "agent_password"
+    ssl_enabled: true
+    
+    connection_pool:
+      min_connections: 5
+      max_connections: 50
+      connection_timeout: "30_seconds"
+  
+  cache:
+    type: "redis"
+    host: "localhost"
+    port: 6379
+    database: 0
+    password: "redis_password"
+    ssl_enabled: false
+    
+    cluster:
+      enabled: false
+      nodes: []
+  
+  search:
+    type: "elasticsearch"
+    host: "localhost"
+    port: 9200
+    index_prefix: "enterprise_agents"
+    ssl_enabled: true
+
+# 消息队列配置
+message_queue:
+  type: "rabbitmq"  # rabbitmq, kafka, redis
+  host: "localhost"
+  port: 5672
+  username: "mq_user"
+  password: "mq_password"
+  vhost: "/"
+  
+  queues:
+    customer_service: "cs_queue"
+    code_assistant: "ca_queue"
+    business_automation: "ba_queue"
+    deployment_ops: "do_queue"
+  
+  exchanges:
+    default: "agent_exchange"
+    dead_letter: "agent_dlx"
+
+# 外部服务配置
+external_services:
+  llm:
+    provider: "openai"  # openai, anthropic, azure, local
+    api_key: "${LLM_API_KEY}"
+    model: "gpt-4"
+    max_tokens: 4000
+    temperature: 0.7
+    
+    endpoints:
+      chat: "https://api.openai.com/v1/chat/completions"
+      embeddings: "https://api.openai.com/v1/embeddings"
+  
+  email:
+    provider: "smtp"  # smtp, sendgrid, ses
+    host: "smtp.gmail.com"
+    port: 587
+    username: "${EMAIL_USERNAME}"
+    password: "${EMAIL_PASSWORD}"
+    ssl_enabled: true
+  
+  storage:
+    provider: "s3"  # s3, gcs, azure_blob, local
+    bucket: "enterprise-agents-storage"
+    region: "us-west-2"
+    access_key: "${STORAGE_ACCESS_KEY}"
+    secret_key: "${STORAGE_SECRET_KEY}"
+
+# 环境特定配置
+environments:
+  development:
+    debug: true
+    log_level: "DEBUG"
+    enable_hot_reload: true
+    mock_external_services: true
+  
+  testing:
+    debug: false
+    log_level: "INFO"
+    enable_test_data: true
+    mock_external_services: true
+  
+  staging:
+    debug: false
+    log_level: "INFO"
+    enable_performance_monitoring: true
+    mock_external_services: false
+  
+  production:
+    debug: false
+    log_level: "WARNING"
+    enable_performance_monitoring: true
+    enable_security_monitoring: true
+    mock_external_services: false
+    enable_backup: true
+    backup_schedule: "daily"
+
+# 功能开关
+feature_flags:
+  enable_customer_service: true
+  enable_code_assistant: true
+  enable_business_automation: true
+  enable_deployment_ops: true
+  
+  advanced_features:
+    enable_ai_optimization: true
+    enable_predictive_scaling: true
+    enable_anomaly_detection: true
+    enable_auto_remediation: false
+  
+  experimental_features:
+    enable_multi_modal_support: false
+    enable_edge_deployment: false
+    enable_federated_learning: false
+
+# 合规配置
+compliance:
+  gdpr:
+    enable_gdpr_compliance: true
+    data_retention_policy: "7_years"
+    right_to_be_forgotten: true
+    data_portability: true
+  
+  sox:
+    enable_sox_compliance: true
+    audit_trail_retention: "7_years"
+    access_controls: true
+    change_management: true
+  
+  hipaa:
+    enable_hipaa_compliance: false
+    encryption_required: true
+    access_logging: true
+    data_minimization: true
+
+# 备份配置
+backup:
+  enable_backup: true
+  backup_schedule: "daily"
+  backup_time: "02:00"
+  retention_days: 30
+  
+  destinations:
+    - "local"
+    - "s3"
+    - "gcs"
+  
+  include:
+    - "database"
+    - "files"
+    - "configurations"
+    - "logs"
+  
+  exclude:
+    - "temp_files"
+    - "cache"
+    - "logs/old"
+
+# 监控配置
+monitoring:
+  health_checks:
+    enable_health_checks: true
+    check_interval: "30_seconds"
+    timeout: "10_seconds"
+    
+    endpoints:
+      - "/health"
+      - "/ready"
+      - "/live"
+  
+  metrics:
+    enable_metrics: true
+    metrics_port: 9090
+    metrics_path: "/metrics"
+    
+    custom_metrics:
+      - "business_metrics"
+      - "user_metrics"
+      - "system_metrics"
+  
+  tracing:
+    enable_tracing: true
+    tracing_endpoint: "http://jaeger:14268/api/traces"
+    sampling_rate: 0.1
+
+# 通知配置
+notifications:
+  email:
+    enable_email_notifications: true
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    from_email: "noreply@company.com"
+    to_emails:
+      - "admin@company.com"
+      - "ops@company.com"
+  
+  slack:
+    enable_slack_notifications: true
+    webhook_url: "${SLACK_WEBHOOK_URL}"
+    channel: "#alerts"
+    username: "Agent System"
+  
+  webhook:
+    enable_webhook_notifications: true
+    webhook_urls:
+      - "https://company.com/webhook/alerts"
+    timeout: "10_seconds"
+    retry_attempts: 3

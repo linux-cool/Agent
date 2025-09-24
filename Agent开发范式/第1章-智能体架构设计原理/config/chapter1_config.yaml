@@ -1,0 +1,266 @@
+# chapter1_config.yaml
+# 第1章 智能体架构设计原理 - 配置文件
+
+# 智能体基础配置
+agent:
+  name: "Chapter1Agent"
+  version: "1.0.0"
+  description: "基于六大核心技术支柱的智能体架构示例"
+  author: "Agent开发范式作者"
+  created_at: "2025-01-23"
+
+# 任务规划配置
+task_planning:
+  max_decomposition_depth: 5
+  strategies:
+    - "hierarchical"
+    - "dependency"
+    - "resource"
+  default_strategy: "hierarchical"
+  priority_levels: 10
+  timeout: 300  # seconds
+
+# 记忆管理配置
+memory:
+  short_term:
+    max_size: 1000
+    ttl: 3600  # seconds
+    cleanup_threshold: 0.8
+    access_tracking: true
+  
+  long_term:
+    storage_type: "vector_db"  # vector_db, database, file
+    collection_name: "chapter1_memory"
+    embedding_model: "text-embedding-ada-002"
+    importance_threshold: 0.5
+  
+  process:
+    max_steps: 100
+    retention_days: 30
+    compression: true
+
+# 工具管理配置
+tools:
+  registration:
+    auto_discovery: false
+    validation: true
+    sandbox_mode: true
+  
+  execution:
+    timeout: 30  # seconds
+    retry_count: 3
+    parallel_execution: true
+    max_concurrent: 5
+  
+  security:
+    allowed_operations:
+      - "read"
+      - "write"
+      - "execute"
+    restricted_operations:
+      - "system"
+      - "network"
+      - "file_system"
+
+# 自治循环配置
+autonomous_loop:
+  max_iterations: 10
+  reflection_threshold: 0.7
+  adaptation_rate: 0.1
+  learning_enabled: true
+  
+  phases:
+    thinking:
+      timeout: 30
+      max_depth: 5
+    
+    acting:
+      timeout: 60
+      retry_count: 3
+    
+    observing:
+      timeout: 10
+      validation: true
+    
+    reflecting:
+      timeout: 20
+      learning_rate: 0.1
+
+# 安全控制配置
+security:
+  input_validation:
+    max_length: 10000
+    malicious_patterns:
+      - "<script.*?>.*?</script>"
+      - "eval\\s*\\("
+      - "exec\\s*\\("
+      - "__import__\\s*\\("
+    sanitization: true
+  
+  rate_limiting:
+    requests_per_minute: 100
+    burst_limit: 20
+    window_size: 60  # seconds
+  
+  execution_monitoring:
+    timeout: 300  # seconds
+    resource_limits:
+      cpu_percent: 80
+      memory_mb: 1024
+      disk_mb: 100
+  
+  guardrails:
+    content_filter: true
+    toxicity_detection: true
+    privacy_protection: true
+    sensitive_data_detection: true
+
+# 多智能体协作配置
+multi_agent:
+  coordination:
+    strategies:
+      - "centralized"
+      - "distributed"
+      - "hybrid"
+    default_strategy: "centralized"
+    heartbeat_interval: 30  # seconds
+    timeout: 60  # seconds
+  
+  communication:
+    protocol: "json"  # json, protobuf, msgpack
+    compression: true
+    encryption: false
+    message_queue_size: 1000
+  
+  task_allocation:
+    strategy: "load_balanced"  # load_balanced, capability_based, cost_optimized
+    max_retries: 3
+    load_threshold: 0.8
+
+# 监控配置
+monitoring:
+  enabled: true
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  
+  metrics:
+    collection_interval: 30  # seconds
+    retention_days: 30
+    export_format: "prometheus"
+  
+  logging:
+    file: "logs/chapter1_agent.log"
+    max_size: "10MB"
+    backup_count: 5
+    format: "json"  # json, text
+  
+  performance:
+    track_response_time: true
+    track_memory_usage: true
+    track_cpu_usage: true
+    alert_thresholds:
+      response_time: 5000  # ms
+      memory_usage: 80  # percentage
+      cpu_usage: 90  # percentage
+
+# 开发配置
+development:
+  debug: true
+  hot_reload: true
+  test_mode: false
+  
+  testing:
+    mock_llm: false
+    mock_tools: false
+    test_data_path: "tests/data"
+    coverage_threshold: 80  # percentage
+  
+  tools:
+    profiler: true
+    debugger: true
+    code_coverage: true
+    static_analysis: true
+
+# 示例工具配置
+example_tools:
+  calculator:
+    enabled: true
+    allowed_operations:
+      - "arithmetic"
+      - "comparison"
+      - "logical"
+    precision: 10  # decimal places
+  
+  web_search:
+    enabled: true
+    mock_mode: true  # 使用模拟数据
+    timeout: 30
+    max_results: 10
+  
+  file_manager:
+    enabled: false  # 默认禁用
+    allowed_paths:
+      - "/tmp"
+      - "/data"
+    max_file_size: "10MB"
+
+# 环境变量配置
+environment:
+  required:
+    - "AGENT_NAME"
+    - "LOG_LEVEL"
+  
+  optional:
+    - "OPENAI_API_KEY"
+    - "DATABASE_URL"
+    - "REDIS_URL"
+    - "MONITORING_ENDPOINT"
+
+# 功能开关
+features:
+  autonomous_loop: true
+  multi_agent_coordination: true
+  memory_management: true
+  tool_execution: true
+  security_controls: true
+  monitoring: true
+  
+  # 实验性功能
+  experimental:
+    reinforcement_learning: false
+    federated_learning: false
+    blockchain_integration: false
+    quantum_computing: false
+
+# 性能优化配置
+performance:
+  caching:
+    enabled: true
+    ttl: 3600  # seconds
+    max_size: 1000
+  
+  async_processing:
+    enabled: true
+    max_concurrent: 10
+    queue_size: 100
+  
+  memory_optimization:
+    garbage_collection: true
+    memory_pool: true
+    compression: true
+
+# 错误处理配置
+error_handling:
+  retry_policy:
+    max_retries: 3
+    backoff_factor: 2
+    max_delay: 60  # seconds
+  
+  fallback_strategies:
+    graceful_degradation: true
+    circuit_breaker: true
+    timeout_handling: true
+  
+  logging:
+    log_errors: true
+    log_stack_traces: true
+    error_reporting: true

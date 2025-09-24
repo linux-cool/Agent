@@ -1,0 +1,36 @@
+# 第4章 记忆与推理系统构建 依赖包
+
+# 核心依赖
+asyncio
+pytest>=6.0.0
+pyyaml>=5.4.0
+
+# 数据处理
+numpy>=1.21.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+
+# 图处理
+networkx>=2.6.0
+matplotlib>=3.4.0
+
+# 数据库和存储
+sqlalchemy>=1.4.0
+redis>=4.0.0
+
+# 数学和科学计算
+sympy>=1.9.0
+
+# 其他工具
+uuid
+hashlib
+datetime
+collections
+re
+math
+random
+json
+logging
+typing
+dataclasses
+enum
